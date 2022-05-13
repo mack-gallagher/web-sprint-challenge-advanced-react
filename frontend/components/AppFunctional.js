@@ -1,6 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react';
 
 export default function AppFunctional(props) {
+  
+  const initialGrid = [[null, null, null],
+                       [null, "B", null],
+                       [null, null, null],
+                      ];
+  const [grid, setGrid] = useState(initialGrid);
+
+  const squares = [];
+  for (let i = 0; i < grid.length; i++) {
+    for (let j = 0; j < grid[i].length; j++) {
+      if (grid[i][j] === "B") {
+        squares.push(["square active","B"]);
+      } else {
+        squares.push(["square",""]);
+      }
+    }
+  }
+
   return (
     <div id="wrapper" className={props.className}>
       <div className="info">
@@ -8,15 +26,11 @@ export default function AppFunctional(props) {
         <h3 id="steps">You moved 0 times</h3>
       </div>
       <div id="grid">
-        <div className="square"></div>
-        <div className="square"></div>
-        <div className="square"></div>
-        <div className="square"></div>
-        <div className="square active">B</div>
-        <div className="square"></div>
-        <div className="square"></div>
-        <div className="square"></div>
-        <div className="square"></div>
+        { squares.map(x => {
+          return (
+            <div className={x[0]}>{ x[1] }</div>
+          )
+        }) }
       </div>
       <div className="info">
         <h3 id="message"></h3>
