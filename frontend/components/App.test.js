@@ -22,6 +22,13 @@ test('Header renders', () => {
   expect(header).toBeInTheDocument;
 });
 
+test('Submit button renders', () => {
+  const wrapper = render(<AppFunctional />);
+
+  const submitButton = wrapper.queryByText(/submit query/i);
+  expect(submitButton).toBeInTheDocument;
+});
+
 test('Starting coordinates are (2, 2)', () => {
   const wrapper = render(<AppFunctional />);
 
